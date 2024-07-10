@@ -1,0 +1,78 @@
+﻿<Window x:Class="Kinoteatr.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Kinoteatr"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="650" Width="800">
+    <Window.Resources>
+        <Style TargetType="ListBoxItem">
+            <Style.Triggers >
+                <DataTrigger Binding="{Binding Status}" Value="active    ">
+                    <Setter Property="Background" Value="Green"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Status}" Value="block     ">
+                    <Setter Property="Background" Value="Gray"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
+    <Grid x:Name="gridroot">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="550"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="200"/>
+            <RowDefinition Height="390"/>
+        </Grid.RowDefinitions>
+        <ListBox Grid.Column="0" Grid.Row="1" x:Name="list_mesta" BorderBrush="{x:Null}">
+            <ListBox.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <UniformGrid Columns="9" />
+                </ItemsPanelTemplate>
+            </ListBox.ItemsPanel>
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <WrapPanel ItemHeight="50" VerticalAlignment="Center" HorizontalAlignment="Center" ItemWidth="50">
+                        <Border Background="#7442c8" CornerRadius="10">
+                            <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" Text="{Binding Number}" Foreground="#ffffff" FontWeight="Bold"/>
+                        </Border>
+                    </WrapPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <ListBox  x:Name="list_vipmesta" BorderBrush="{x:Null}" Margin="0,30,0,0">
+            <ListBox.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <UniformGrid Rows="2"/>
+                </ItemsPanelTemplate>
+            </ListBox.ItemsPanel>
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <WrapPanel ItemHeight="50" VerticalAlignment="Center" HorizontalAlignment="Center" ItemWidth="80">
+                        <Border Background="Gold" CornerRadius="10">
+                            <TextBlock x:Name="dsad" VerticalAlignment="Center" HorizontalAlignment="Center" Text="{Binding Number}" Foreground="#ffffff" FontWeight="Bold"/>
+                        </Border>
+                    </WrapPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <WrapPanel x:Name="radiobut_enable" Orientation="Vertical" Grid.Row="1" Grid.Column="1">
+        <RadioButton Content="Режим карантина" Click="RadioButton_Click"/>
+        <RadioButton Content="Обычный режим" Click="RadioButton2_Click"/>
+        </WrapPanel>
+        <WrapPanel Grid.Row="0" ItemHeight="25" VerticalAlignment="Center" HorizontalAlignment="Center" ItemWidth="150" Grid.Column="1">
+            <Button Click="Button_Click" Content="Купить билет"/>
+            <Button Click="Button_Click_1" Content="Забронировать место"/>
+            <Button Click="Button_Click_2" Content="Вернуть билет"/>
+            <Button Click="Button_Click_3" Content="Снять бронь"/>
+            <Button Click="Button_Click_4" Content="Снять выбор"/>
+            <WrapPanel Orientation="Horizontal">
+            <TextBlock Text="Ваш баланс: "/>
+            <TextBlock x:Name="balance_tb" Text="10000"/>
+            </WrapPanel>
+        </WrapPanel>
+    </Grid>
+</Window>
